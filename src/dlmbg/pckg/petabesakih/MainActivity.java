@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +32,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends Activity implements OnMapLongClickListener, OnInfoWindowClickListener{
 	
-
 	static final LatLng AWAL = new LatLng(3.584695,98.675079);
 	ArrayList<HashMap<String, String>> dataMap = new ArrayList<HashMap<String, String>>();
 	private ProgressDialog pDialog;
@@ -187,7 +187,11 @@ public class MainActivity extends Activity implements OnMapLongClickListener, On
 
 	@Override
 	public void onInfoWindowClick(Marker marker) {
-		Toast.makeText(getBaseContext(), marker.getId().toString(), Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, DetailPeta.class);
+
+		String replace_string_first = marker.getTitle().replace(" ", "_");
+		intent.putExtra("judul", replace_string_first);
+		startActivity(intent);
 		
 	}
     
