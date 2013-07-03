@@ -16,7 +16,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -38,8 +37,9 @@ public class MainActivity extends Activity implements OnMapLongClickListener, On
 	JSONParser jParser = new JSONParser();
 	Koneksi lo_Koneksi = new Koneksi();
 	String isi = lo_Koneksi.isi_koneksi();
-	String link_url = isi + "index.php";
+	String link_url = isi + "peta.php";
 	JSONArray str_json = null;
+	
 	class MyInfoWindowAdapter implements InfoWindowAdapter{
 		
 		private final View myContentsView;
@@ -158,6 +158,8 @@ public class MainActivity extends Activity implements OnMapLongClickListener, On
         myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AWAL, 15));
 	
         myMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+        
+        
 
         new getListInfo().execute();
 
